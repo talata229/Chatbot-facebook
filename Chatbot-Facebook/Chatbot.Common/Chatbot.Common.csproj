@@ -74,7 +74,19 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\Bean Eater-0.3s-200px.gif" />
+    <Content Include="Images\Designbolts-Pink-Girly-Social-Hover-Facebook.ico" />
+    <Content Include="Images\Graphics-Vibe-Hot-Burning-Social-Facebook.ico" />
+    <Content Include="Images\Graphics-Vibe-Simple-Rounded-Social-Facebook.ico" />
+    <Content Include="Images\instagram.ico" />
+    <Content Include="Images\instagram2.ico" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\Ripple-0.2s-200px.gif" />
+    <Content Include="Images\Ripple-1s-200px.gif" />
+    <Content Include="Images\Simplefly-Simple-Green-Social-Media-Facebook.ico" />
+    <Content Include="Images\Yootheme-Social-Bookmark-Social-facebook-button-blue.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
