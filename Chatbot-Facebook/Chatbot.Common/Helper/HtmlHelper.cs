@@ -82,7 +82,7 @@ namespace Chatbot.Common.Helper
             using (Bitmap bitmap = new Bitmap(webBrowser.Width, webBrowser.Height))
             {
                 webBrowser.DrawToBitmap(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
-                bitmap.Save(@"filename12345.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                bitmap.Save(@"covid-vn.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             }
 
         }
