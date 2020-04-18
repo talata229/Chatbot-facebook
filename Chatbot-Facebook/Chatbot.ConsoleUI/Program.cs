@@ -11,7 +11,7 @@ namespace Chatbot.ConsoleUI
     {
         static void Main(string[] args)
         {
-            //Basic_Usage_Custom.Run().GetAwaiter().GetResult();
+            Basic_Usage_Custom.Run().GetAwaiter().GetResult();
             HtmlHelper.ConvertHtmlToImage("test");
         }
     }

@@ -1269,27 +1269,7 @@ namespace Chatbot.Client.API
         {
             #region FirebaseChatStop
             IFirebaseClient client = FirebaseHelper.SetFirebaseClientForChat();
-            if (message.text == "stopall")
-            {
-                await client.SetAsync("ListBlockUser/" + thread_id, new
-                {
-                    Id = thread_id,
-                    BlockAll = true
-                });
-            }
-            else if (message.text == "stophour")
-            {
-                await client.SetAsync("ListUser/" + thread_id, new
-                {
-                    BlockUntil = DateTime.UtcNow.AddHours(1)
-                });
-            }
-            else if (message.text == "removestopall")
-            {
-                await client.DeleteAsync("ListBlockUser/" + thread_id);
-            }
-
-
+            var enumChat = await ChatHelper.CheckSpecialChat(client, message?.text, thread_id);
             #endregion
 
 

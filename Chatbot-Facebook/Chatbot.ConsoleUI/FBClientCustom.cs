@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Chatbot.Client;
 using Chatbot.Client.API;
+using Chatbot.Common.Enums;
 using Chatbot.Common.Helper;
 using Chatbot.Common.Models.Responses;
 using FireSharp.Interfaces;
@@ -43,23 +45,15 @@ namespace Chatbot.ConsoleUI
                 if (thread_type == ThreadType.ROOM || thread_type == ThreadType.GROUP)
                     return;
                 IFirebaseClient client = FirebaseHelper.SetFirebaseClientForChat();
-                //Check Remove blockall
-                if (message.ToLower() == "removestopall")
+                EnumSpecialChatText enumSpecialChatText = await ChatHelper.CheckSpecialChat(client, message, thread_id);
+                //Hạn chế sửa
+                switch (enumSpecialChatText)
                 {
-                    await client.DeleteAsync("ListBlockUser/" + thread_id);
-                    return;
+                    case EnumSpecialChatText.RemoveStopAll:
+                        return;
+                    case EnumSpecialChatText.SameAccount:
+                        return;
                 }
-
-                if (author_id == GetUserUid())
-                {
-                    await client.SetAsync("ListBlockUser/" + GetUserUid(), new MessageFirsebase
-                    {
-                        Id = GetUserUid(),
-                        BlockAll = true
-                    });
-                    return;
-                }
-
                 //Check ListBlockUser
                 FirebaseResponse firebaseResponse = await client.GetAsync("ListBlockUser");
                 Dictionary<string, MessageFirsebase> listBlockUser = JsonConvert.DeserializeObject<Dictionary<string, MessageFirsebase>>(firebaseResponse.Body);
@@ -80,34 +74,34 @@ namespace Chatbot.ConsoleUI
                 {
                     //Thơi gian hien tai < Thoi gian Block
                     var response = firebaseGet.ResultAs<MessageFirsebase>();
+                    var enumChat = await ChatHelper.CheckSpecialChat(client, message, thread_id);
+                    switch (enumChat)
+                    {
+                        case EnumSpecialChatText.StopAll:
+                            return;
+                        case EnumSpecialChatText.StopHour:
+                            return;
+                        case EnumSpecialChatText.TroLyAo:
+                            await send(new FB_Message { text = "Chào bạn. Mình là Trợ lý ảo của Quang.\nNhững tin nhắn này được trả lời tự động. Mục đích vui là chính :D" }, author_id, ThreadType.USER);
+                            return;
+                        case EnumSpecialChatText.CovidVN:
+                            string html = await Covid19Helper.GetDetailVN();
+                            HtmlHelper.ConvertHtmlToImage(html);
+                            Thread.Sleep(2000);
+                            using (FileStream stream = File.OpenRead(@"covid-vn2.jpg"))
+                            {
+
+                                await sendLocalFiles(
+                                    file_paths: new Dictionary<string, Stream>() { { @"covid-vn2.jpg", stream } },
+                                    message: null,
+                                    thread_id: author_id,
+                                    thread_type: ThreadType.USER);
+                            }
+                            return;
+                    }
+
                     if (DateTime.UtcNow < response?.BlockUntil)
                     {
-                        if (message.ToLower() == "stopall")
-                        {
-                            await client.SetAsync("ListBlockUser/" + thread_id, new MessageFirsebase
-                            {
-                                Id = thread_id,
-                                BlockAll = true
-                            });
-                            return;
-                        }
-                        else if (message.ToLower() == "stophour")
-                        {
-                            await client.SetAsync("ListUser/" + thread_id, new MessageFirsebase
-                            {
-                                BlockUntil = DateTime.UtcNow.AddHours(1)
-                            });
-                            return;
-                        }
-                        else if (message.ToLower() == "trolyao")
-                        {
-                            await client.SetAsync("ListSimsimiUser/" + thread_id, new MessageFirsebase
-                            {
-                                Id = thread_id
-                            });
-                            await send(new FB_Message { text = "Chào bạn. Mình là Trợ lý ảo của Quang.\nNhững tin nhắn này được trả lời tự động. Mục đích vui là chính :D" }, author_id, ThreadType.USER);
-
-                        }
                         if (await CheckUserInListSimsimi(client, thread_id))
                         {
                             string answer = await SimsimiHelper.SendSimsimi(message);
@@ -117,35 +111,7 @@ namespace Chatbot.ConsoleUI
                     }
                     else
                     {
-                        if (message.ToLower() == "stopall")
-                        {
-                            await client.SetAsync("ListBlockUser/" + thread_id, new MessageFirsebase
-                            {
-                                Id = thread_id,
-                                BlockAll = true
-                            });
-                            return;
-                        }
-                        else if (message.ToLower() == "stophour")
-                        {
-                            await client.SetAsync("ListUser/" + thread_id, new MessageFirsebase
-                            {
-                                Id = thread_id,
-                                BlockUntil = DateTime.UtcNow.AddHours(1)
-                            });
-                            return;
-                        }
-                        else if (message.ToLower() == "trolyao")
-                        {
-                            await client.SetAsync("ListSimsimiUser/" + thread_id, new MessageFirsebase
-                            {
-                                Id = thread_id
-                            });
-                            await send(new FB_Message { text = "Chào bạn. Mình là Trợ lý ảo của Quang.\nNhững tin nhắn này được trả lời tự động. Mục đích vui là chính :D" }, author_id, ThreadType.USER);
-                        }
-
-
-                        //Co the send message o day
+                        //Có thể send message ở đây
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(string.Format($"{DateTime.Now}: Got new 1 message from author_id = {author_id}: {message}. Thread_type = {thread_type.ToString()} \nthread_id={thread_id}"));
                         if (author_id != GetUserUid())
@@ -163,9 +129,6 @@ namespace Chatbot.ConsoleUI
 
                                 await send(new FB_Message { text = text }, author_id, ThreadType.USER);
                             }
-
-
-
                             #region Ít dùng
                             //using (FileStream stream = File.OpenRead(@"the girl with katana.jpg"))
                             //{
@@ -177,11 +140,8 @@ namespace Chatbot.ConsoleUI
                             //}
                             //await send(new FB_Message { text = "Đáp lại tin nhắn----" }, author_id, ThreadType.USER);
                             //await send(new FB_Message { text = await Covid19Helper.GetDetail() }, author_id, ThreadType.USER);
-
                             #endregion
-
                         }
-
                         ///////////////////
                         if (!await CheckUserInListSimsimi(client, thread_id))
                         {

@@ -66,10 +66,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\EnumSpecialChatText.cs" />
+    <Compile Include="Helper\ChatHelper.cs" />
+    <Compile Include="Helper\Covid19Helper.cs" />
+    <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Helper\FirebaseHelper.cs" />
     <Compile Include="Helper\HtmlHelper.cs" />
     <Compile Include="Helper\SimsimiHelper.cs" />
     <Compile Include="Models\Requests\SimsimiRequest.cs" />
+    <Compile Include="Models\Responses\Covid\CovidRoot.cs" />
+    <Compile Include="Models\Responses\Covid\Data.cs" />
+    <Compile Include="Models\Responses\Covid\DataDatum.cs" />
+    <Compile Include="Models\Responses\Covid\Hospital.cs" />
+    <Compile Include="Models\Responses\Covid\HospitalDatum.cs" />
+    <Compile Include="Models\Responses\Covid\Tracker.cs" />
+    <Compile Include="Models\Responses\Covid\TrackerByMoh.cs" />
     <Compile Include="Models\Responses\SimsimiResponse.cs" />
     <Compile Include="Models\Responses\MessageFirsebase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
