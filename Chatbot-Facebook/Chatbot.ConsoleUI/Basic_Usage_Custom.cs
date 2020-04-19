@@ -10,6 +10,7 @@ namespace Chatbot.ConsoleUI
 {
     public class Basic_Usage_Custom
     {
+
         private static readonly AutoResetEvent _closing = new AutoResetEvent(false);
 
         public static async Task Run()
