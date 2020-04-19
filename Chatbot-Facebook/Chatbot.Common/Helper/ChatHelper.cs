@@ -66,7 +66,22 @@ namespace Chatbot.Common.Helper
             {
                 return EnumSpecialChatText.CovidVN;
             }
+            if (message.Equals(EnumSpecialChatText.CovidWorld.GetEnumDescription(),
+                StringComparison.InvariantCultureIgnoreCase))
+            {
+                return EnumSpecialChatText.CovidWorld;
+            }
 
+            if (message.Equals(EnumSpecialChatText.Covid.GetEnumDescription(),
+                StringComparison.InvariantCultureIgnoreCase))
+            {
+                return EnumSpecialChatText.Covid;
+            }
+            if (message.Equals(EnumSpecialChatText.GirlXinh.GetEnumDescription(),
+                StringComparison.InvariantCultureIgnoreCase))
+            {
+                return EnumSpecialChatText.GirlXinh;
+            }
             return EnumSpecialChatText.Unknown;
         }
     }

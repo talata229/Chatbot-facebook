@@ -82,17 +82,67 @@ namespace Chatbot.ConsoleUI
                         case EnumSpecialChatText.StopHour:
                             return;
                         case EnumSpecialChatText.TroLyAo:
-                            await send(new FB_Message { text = "Chào bạn. Mình là Trợ lý ảo của Quang.\nNhững tin nhắn này được trả lời tự động. Mục đích vui là chính :D" }, author_id, ThreadType.USER);
+                            await send(new FB_Message { text = "Chào bạn. Mình là Trợ lý ảo của Quang.\nNhững tin nhắn này được trả lời tự động trả lời." }, author_id, ThreadType.USER);
                             return;
                         case EnumSpecialChatText.CovidVN:
-                            string html = await Covid19Helper.GetDetailVN();
-                            HtmlHelper.ConvertHtmlToImage(html);
-                            Thread.Sleep(2000);
-                            using (FileStream stream = File.OpenRead(@"covid-vn2.jpg"))
+                            string htmlVN = await Covid19Helper.GetDetailVN();
+                            string fileNameVN = "covidvn";
+                            fileNameVN = HtmlHelper.ConvertHtmlToImageVersion2(htmlVN, ref fileNameVN);
+                            using (FileStream stream = File.OpenRead($"{fileNameVN}.png"))
                             {
 
                                 await sendLocalFiles(
-                                    file_paths: new Dictionary<string, Stream>() { { @"covid-vn2.jpg", stream } },
+                                    file_paths: new Dictionary<string, Stream>() { { $"{fileNameVN}.png", stream } },
+                                    message: null,
+                                    thread_id: author_id,
+                                    thread_type: ThreadType.USER);
+                            }
+                            return;
+                        case EnumSpecialChatText.CovidWorld:
+                            string htmlWorld = await Covid19Helper.GetDetailWorld();
+                            string fileNameWorld = "covidworld";
+                            fileNameWorld = HtmlHelper.ConvertHtmlToImageVersion2(htmlWorld, ref fileNameWorld);
+                            using (FileStream stream = File.OpenRead($"{fileNameWorld}.png"))
+                            {
+
+                                await sendLocalFiles(
+                                    file_paths: new Dictionary<string, Stream>() { { $"{fileNameWorld}.png", stream } },
+                                    message: null,
+                                    thread_id: author_id,
+                                    thread_type: ThreadType.USER);
+                            }
+                            return;
+                        case EnumSpecialChatText.Covid:
+                            string html1 = await Covid19Helper.GetDetailVN();
+                            string fileName1 = "covid";
+                            HtmlHelper.ConvertHtmlToImageVersion2(html1, ref fileName1);
+                            using (FileStream stream = File.OpenRead($"{fileName1}.png"))
+                            {
+                                await sendLocalFiles(
+                                    file_paths: new Dictionary<string, Stream>() { { $"{fileName1}.png", stream } },
+                                    message: null,
+                                    thread_id: author_id,
+                                    thread_type: ThreadType.USER);
+                            }
+                            string html2 = await Covid19Helper.GetDetailWorld();
+                            string fileName2 = "covid";
+                            HtmlHelper.ConvertHtmlToImageVersion2(html2, ref fileName2);
+                            using (FileStream stream = File.OpenRead($"{fileName2}.png"))
+                            {
+                                await sendLocalFiles(
+                                    file_paths: new Dictionary<string, Stream>() { { $"{fileName2}.png", stream } },
+                                    message: null,
+                                    thread_id: author_id,
+                                    thread_type: ThreadType.USER);
+                            }
+                            return;
+                        case EnumSpecialChatText.GirlXinh:
+                           string fileNameWithExtension=  DownloadHelper.DownloadImageFromUrl(DownloadHelper.RandomImageIdGirl());
+
+                            using (FileStream stream = File.OpenRead(fileNameWithExtension))
+                            {
+                                await sendLocalFiles(
+                                    file_paths: new Dictionary<string, Stream>() { { fileNameWithExtension, stream } },
                                     message: null,
                                     thread_id: author_id,
                                     thread_type: ThreadType.USER);

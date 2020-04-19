@@ -3,6 +3,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chatbot.Common.Helper
@@ -88,17 +89,13 @@ namespace Chatbot.Common.Helper
 
         }
 
-        public void ConvertHtmlToImage()
+        public static string ConvertHtmlToImageVersion2(string source, ref string fileName)
         {
-            Bitmap m_Bitmap = new Bitmap(400, 600);
-            PointF point = new PointF(0, 0);
-            SizeF maxSize = new System.Drawing.SizeF(500, 500);
-            HtmlRenderer.HtmlRender.Render(Graphics.FromImage(m_Bitmap),
-                "<html><body><p>This is a just a html code</p>"
-                + "<p>This is another html line</p></body>",
-                point, maxSize);
-
-            m_Bitmap.Save(@"C:\Test.png", ImageFormat.Png);
+            Image image = TheArtOfDev.HtmlRenderer.WinForms.HtmlRender.RenderToImage(source);
+            image.Save(fileName + ".png", ImageFormat.Png);
+            return fileName;
         }
+
+
     }
 }

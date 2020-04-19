@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Chatbot.Common.Models.Responses.Covid.CovidVn;
 using Newtonsoft.Json;
 
-namespace Chatbot.Common.Models.Responses.Covid
+namespace Chatbot.Common.Models.Responses.Covid.CovidWorld
 {
-    public class CovidRoot
+    public class CovidWorldRoot
     {
         [JsonProperty("code")]
         public long Code { get; set; }
 
         [JsonProperty("data")]
-        public Data Data { get; set; }
+        public DataWorld Data { get; set; }
     }
 }

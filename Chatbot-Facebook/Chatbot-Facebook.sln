@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Client", "Chatbot.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Common", "Chatbot.Common\Chatbot.Common.csproj", "{5A678C48-43B5-4044-AF1F-274DF3F73699}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDriveConsole", "GoogleDriveConsole\GoogleDriveConsole.csproj", "{903D8405-BA03-499A-9BF5-CAB0BF5EB3AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5A678C48-43B5-4044-AF1F-274DF3F73699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A678C48-43B5-4044-AF1F-274DF3F73699}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A678C48-43B5-4044-AF1F-274DF3F73699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{903D8405-BA03-499A-9BF5-CAB0BF5EB3AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{903D8405-BA03-499A-9BF5-CAB0BF5EB3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{903D8405-BA03-499A-9BF5-CAB0BF5EB3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{903D8405-BA03-499A-9BF5-CAB0BF5EB3AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

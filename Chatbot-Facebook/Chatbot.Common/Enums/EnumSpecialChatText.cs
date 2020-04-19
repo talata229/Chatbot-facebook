@@ -21,6 +21,12 @@ namespace Chatbot.Common.Enums
         TroLyAo,
         [Description("covidvn")]
         CovidVN,
+        [Description("covidworld")]
+        CovidWorld,
+        [Description("covid")]
+        Covid,
+        [Description("girlxinh")]
+        GirlXinh,
         [Description("unknown")]
         Unknown
     }

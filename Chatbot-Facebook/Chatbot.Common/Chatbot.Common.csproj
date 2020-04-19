@@ -34,6 +34,30 @@
     <Reference Include="FireSharp, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FireSharp.2.0.4\lib\portable-net45+sl5+wp8+win8\FireSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.45.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.45.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.45.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.45.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Drive.v3, Version=1.45.0.1922, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Drive.v3.1.45.0.1922\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.45.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer, Version=1.5.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.5\lib\net45\HtmlRenderer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer.WinForms, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.WinForms.1.5.0.6\lib\net45\HtmlRenderer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -43,8 +67,8 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,23 +93,30 @@
     <Compile Include="Enums\EnumSpecialChatText.cs" />
     <Compile Include="Helper\ChatHelper.cs" />
     <Compile Include="Helper\Covid19Helper.cs" />
+    <Compile Include="Helper\DownloadHelper.cs" />
     <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Helper\FirebaseHelper.cs" />
     <Compile Include="Helper\HtmlHelper.cs" />
     <Compile Include="Helper\SimsimiHelper.cs" />
     <Compile Include="Models\Requests\SimsimiRequest.cs" />
-    <Compile Include="Models\Responses\Covid\CovidRoot.cs" />
-    <Compile Include="Models\Responses\Covid\Data.cs" />
-    <Compile Include="Models\Responses\Covid\DataDatum.cs" />
-    <Compile Include="Models\Responses\Covid\Hospital.cs" />
-    <Compile Include="Models\Responses\Covid\HospitalDatum.cs" />
-    <Compile Include="Models\Responses\Covid\Tracker.cs" />
-    <Compile Include="Models\Responses\Covid\TrackerByMoh.cs" />
+    <Compile Include="Models\Responses\Covid\CovidVn\CovidVnRoot.cs" />
+    <Compile Include="Models\Responses\Covid\CovidVn\Data.cs" />
+    <Compile Include="Models\Responses\Covid\CovidVn\DataDatum.cs" />
+    <Compile Include="Models\Responses\Covid\CovidVn\Hospital.cs" />
+    <Compile Include="Models\Responses\Covid\CovidVn\HospitalDatum.cs" />
+    <Compile Include="Models\Responses\Covid\CovidVn\Tracker.cs" />
+    <Compile Include="Models\Responses\Covid\CovidVn\TrackerByMoh.cs" />
+    <Compile Include="Models\Responses\Covid\CovidWorld\CovidWorldRoot.cs" />
+    <Compile Include="Models\Responses\Covid\CovidWorld\DataWorld.cs" />
+    <Compile Include="Models\Responses\Covid\CovidWorld\DatumWorld.cs" />
+    <Compile Include="Models\Responses\Covid\CovidWorld\TableCountry.cs" />
+    <Compile Include="Models\Responses\Covid\CovidWorld\TableWorld.cs" />
     <Compile Include="Models\Responses\SimsimiResponse.cs" />
     <Compile Include="Models\Responses\MessageFirsebase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

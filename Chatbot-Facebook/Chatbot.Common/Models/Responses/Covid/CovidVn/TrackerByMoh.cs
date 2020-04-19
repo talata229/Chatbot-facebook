@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Chatbot.Common.Models.Responses.Covid
+namespace Chatbot.Common.Models.Responses.Covid.CovidVn
 {
     public class TrackerByMoh
     {
