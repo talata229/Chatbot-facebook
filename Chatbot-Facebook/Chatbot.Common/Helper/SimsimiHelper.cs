@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Chatbot.Common.Models.Requests;
+using Chatbot.Common.Models.Responses;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Chatbot.Common.Models.Requests;
-using Chatbot.Common.Models.Responses;
-using Newtonsoft.Json;
 
 namespace Chatbot.Common.Helper
 {
@@ -14,9 +13,12 @@ namespace Chatbot.Common.Helper
     {
         public static List<string> listAPIKey = new List<string>
         {
-            "YnaQrO3/OY8eN3rlYZQejKv8sPsFaa8OC9q5i3nb",
-            "6Z71R8yzBuhCui8X4W8tABqW+GlrfObJA4enwVs+",
-            "YZh8vKVwsL4L0bB/STI46UDY/QOBeYPLoI1aPWJa"
+            //"YnaQrO3/OY8eN3rlYZQejKv8sPsFaa8OC9q5i3nb",
+            //"6Z71R8yzBuhCui8X4W8tABqW+GlrfObJA4enwVs+",
+            //"YZh8vKVwsL4L0bB/STI46UDY/QOBeYPLoI1aPWJa",
+            "FP4-_bvambFCy1IJy4PXEWm~iceuVjBU-.VcfkCI", //muathudep105
+            "Ol_zRLJ2Cpiva0QB30UkvZZmaAcpHNyKggxGnRQV", //muathudep106
+            "mQg6ZZqqwpfMY7sZ2XZRqqI-MIMD-eihD_98W-6r" //muathudep107
         };
 
         public static string RandomAPIKey(List<string> list)
