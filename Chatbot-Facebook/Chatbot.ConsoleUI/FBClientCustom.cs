@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Chatbot.Client;
+﻿using Chatbot.Client;
 using Chatbot.Client.API;
 using Chatbot.Common.Enums;
 using Chatbot.Common.Helper;
@@ -15,6 +7,12 @@ using FireSharp.Interfaces;
 using FireSharp.Response;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Chatbot.ConsoleUI
 {
@@ -137,7 +135,7 @@ namespace Chatbot.ConsoleUI
                             }
                             return;
                         case EnumSpecialChatText.GirlXinh:
-                           string fileNameWithExtension=  DownloadHelper.DownloadImageFromUrl(DownloadHelper.RandomImageIdGirl());
+                            string fileNameWithExtension = DownloadHelper.DownloadImageFromUrl(DownloadHelper.RandomImageIdGirl());
 
                             using (FileStream stream = File.OpenRead(fileNameWithExtension))
                             {
@@ -230,13 +228,6 @@ namespace Chatbot.ConsoleUI
             });
         }
 
-
-
-
-
-
-
-
         protected override async Task DeleteCookiesAsync()
         {
             try
@@ -321,6 +312,8 @@ namespace Chatbot.ConsoleUI
             }
             return dir;
         }
+
+       
     }
 
 }

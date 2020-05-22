@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basic_Usage_Custom.cs" />
+    <Compile Include="Basic_Usage_Custom2.cs" />
     <Compile Include="FBClientCustom.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
